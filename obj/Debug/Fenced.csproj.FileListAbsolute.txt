@@ -1,0 +1,11 @@
+D:\Projects\Fenced\bin\Debug\Fenced.exe.config
+D:\Projects\Fenced\bin\Debug\Fenced.exe
+D:\Projects\Fenced\bin\Debug\Fenced.pdb
+D:\Projects\Fenced\obj\Debug\Fenced.csprojAssemblyReference.cache
+D:\Projects\Fenced\obj\Debug\Fenced.MainForm.resources
+D:\Projects\Fenced\obj\Debug\Fenced.Properties.Resources.resources
+D:\Projects\Fenced\obj\Debug\Fenced.StartForm.resources
+D:\Projects\Fenced\obj\Debug\Fenced.csproj.GenerateResource.cache
+D:\Projects\Fenced\obj\Debug\Fenced.csproj.CoreCompileInputs.cache
+D:\Projects\Fenced\obj\Debug\Fenced.exe
+D:\Projects\Fenced\obj\Debug\Fenced.pdb
