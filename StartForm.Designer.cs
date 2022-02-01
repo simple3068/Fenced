@@ -146,6 +146,7 @@ namespace Fenced
             this.Controls.Add(this.label2);
             this.Controls.Add(this.numericUpDownWidth);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "StartForm";
             this.Text = "Fenced :: Setting";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).EndInit();

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Media;
+
 namespace Fenced
 {
     public partial class MainForm : Form
@@ -31,9 +33,14 @@ namespace Fenced
         List<Tuple<Point, Point>> listEdge;
         Area[,] mapArea;
 
+        SoundPlayer spLine, spArea;
+
         public MainForm()
         {
             listEdge = new List<Tuple<Point, Point>>();
+
+            spLine = new SoundPlayer(Properties.Resources.LineDrawn);
+            spArea = new SoundPlayer(Properties.Resources.AreaFilled);
 
             InitializeComponent();
         }
@@ -209,6 +216,7 @@ namespace Fenced
             }
 
             ((PictureBox)sender).Enabled = false;
+            spLine.Play();
 
             // Check
             for (row = 0; row < nBoardHeight - 1; row++)
@@ -241,6 +249,7 @@ namespace Fenced
                             };
 
                             this.Controls.Add(mapArea[row, col].pb);
+                            spArea.Play();
 
                             SetAreaColor();
                         }
@@ -292,6 +301,9 @@ namespace Fenced
         void GameOver()
         {
             DialogResult result;
+
+            SoundPlayer sp = new SoundPlayer(Properties.Resources.GameOver);
+            sp.Play();
 
             if (nPlayer1Count > nPlayer2Count)
             {

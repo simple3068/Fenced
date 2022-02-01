@@ -104,5 +104,14 @@
   <ItemGroup>
     <None Include="Resources\line_clicked_vr.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\area.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameover.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

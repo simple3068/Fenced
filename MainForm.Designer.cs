@@ -90,6 +90,7 @@ namespace Fenced
             this.Controls.Add(this.pictureBoxDotStandard);
             this.Controls.Add(this.labelPlayer2);
             this.Controls.Add(this.labelPlayer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "MainForm";
             this.Text = "Fenced";
             this.Load += new System.EventHandler(this.MainForm_Load);

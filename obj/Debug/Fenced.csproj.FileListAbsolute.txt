@@ -9,3 +9,14 @@ D:\Projects\Fenced\obj\Debug\Fenced.csproj.GenerateResource.cache
 D:\Projects\Fenced\obj\Debug\Fenced.csproj.CoreCompileInputs.cache
 D:\Projects\Fenced\obj\Debug\Fenced.exe
 D:\Projects\Fenced\obj\Debug\Fenced.pdb
+C:\Users\Simple\Documents\GitHub\Fenced\bin\Debug\Fenced.exe.config
+C:\Users\Simple\Documents\GitHub\Fenced\bin\Debug\Fenced.exe
+C:\Users\Simple\Documents\GitHub\Fenced\bin\Debug\Fenced.pdb
+C:\Users\Simple\Documents\GitHub\Fenced\obj\Debug\Fenced.csprojAssemblyReference.cache
+C:\Users\Simple\Documents\GitHub\Fenced\obj\Debug\Fenced.MainForm.resources
+C:\Users\Simple\Documents\GitHub\Fenced\obj\Debug\Fenced.Properties.Resources.resources
+C:\Users\Simple\Documents\GitHub\Fenced\obj\Debug\Fenced.StartForm.resources
+C:\Users\Simple\Documents\GitHub\Fenced\obj\Debug\Fenced.csproj.GenerateResource.cache
+C:\Users\Simple\Documents\GitHub\Fenced\obj\Debug\Fenced.csproj.CoreCompileInputs.cache
+C:\Users\Simple\Documents\GitHub\Fenced\obj\Debug\Fenced.exe
+C:\Users\Simple\Documents\GitHub\Fenced\obj\Debug\Fenced.pdb
