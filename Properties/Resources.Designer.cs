@@ -61,20 +61,51 @@ namespace Fenced.Properties {
         }
         
         /// <summary>
-        ///   System.IO.MemoryStream과(와) 유사한 System.IO.UnmanagedMemoryStream 형식의 지역화된 리소스를 찾습니다.
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream AreaFilled {
+        internal static System.Drawing.Bitmap imgDot {
             get {
-                return ResourceManager.GetStream("AreaFilled", resourceCulture);
+                object obj = ResourceManager.GetObject("imgDot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Dot {
+        internal static System.Drawing.Bitmap imgLineClickedHR {
             get {
-                object obj = ResourceManager.GetObject("Dot", resourceCulture);
+                object obj = ResourceManager.GetObject("imgLineClickedHR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgLineClickedVR {
+            get {
+                object obj = ResourceManager.GetObject("imgLineClickedVR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgLineHR {
+            get {
+                object obj = ResourceManager.GetObject("imgLineHR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgLineVR {
+            get {
+                object obj = ResourceManager.GetObject("imgLineVR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -82,58 +113,27 @@ namespace Fenced.Properties {
         /// <summary>
         ///   System.IO.MemoryStream과(와) 유사한 System.IO.UnmanagedMemoryStream 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream GameOver {
+        internal static System.IO.UnmanagedMemoryStream sfxDrewLine {
             get {
-                return ResourceManager.GetStream("GameOver", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap LineClickedHR {
-            get {
-                object obj = ResourceManager.GetObject("LineClickedHR", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap LineClickedVR {
-            get {
-                object obj = ResourceManager.GetObject("LineClickedVR", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("sfxDrewLine", resourceCulture);
             }
         }
         
         /// <summary>
         ///   System.IO.MemoryStream과(와) 유사한 System.IO.UnmanagedMemoryStream 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream LineDrawn {
+        internal static System.IO.UnmanagedMemoryStream sfxFilledArea {
             get {
-                return ResourceManager.GetStream("LineDrawn", resourceCulture);
+                return ResourceManager.GetStream("sfxFilledArea", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        ///   System.IO.MemoryStream과(와) 유사한 System.IO.UnmanagedMemoryStream 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap LineHR {
+        internal static System.IO.UnmanagedMemoryStream sfxGameOver {
             get {
-                object obj = ResourceManager.GetObject("LineHR", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap LineVR {
-            get {
-                object obj = ResourceManager.GetObject("LineVR", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("sfxGameOver", resourceCulture);
             }
         }
     }

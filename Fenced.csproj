@@ -53,6 +53,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,14 +69,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,29 +89,29 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\line_vr.png" />
+    <None Include="Resources\Image\line_vr.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\line_hr.png" />
-    <None Include="Resources\dot.png" />
+    <None Include="Resources\Image\line_hr.png" />
+    <None Include="Resources\Image\dot.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="img\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\line_clicked_hr.png" />
+    <None Include="Resources\Image\line_clicked_hr.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\line_clicked_vr.png" />
+    <None Include="Resources\Image\line_clicked_vr.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\area.wav" />
+    <None Include="Resources\Audio\area.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\line.wav" />
+    <None Include="Resources\Audio\line.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\gameover.wav" />
+    <None Include="Resources\Audio\gameover.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

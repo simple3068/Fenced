@@ -20,15 +20,21 @@ namespace Fenced
             public PictureBox pb;
         };
 
-        int nBoardWidth;
-        int nBoardHeight;
+        int nBoardWidth = 0;
+        int nBoardHeight = 0;
 
-        int nPlayerTurn;
+        int nPlayerTurn = 0;
 
-        int nPlayer1Count;
-        int nPlayer2Count;
+        int nPlayer1Count = -1;
+        int nPlayer2Count = -1;
 
-        bool bFillBorder;
+        bool bFillBorder = true;
+
+        string strNamePlayer1 = "";
+        string strNamePlayer2 = "";
+
+        Color cPlayer1 = new Color();
+        Color cPlayer2 = new Color();
 
         List<Tuple<Point, Point>> listEdge;
         Area[,] mapArea;
@@ -39,22 +45,44 @@ namespace Fenced
         {
             listEdge = new List<Tuple<Point, Point>>();
 
-            spLine = new SoundPlayer(Properties.Resources.LineDrawn);
-            spArea = new SoundPlayer(Properties.Resources.AreaFilled);
+            spLine = new SoundPlayer(Properties.Resources.sfxDrewLine);
+            spArea = new SoundPlayer(Properties.Resources.sfxFilledArea);
 
             InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            StartForm startForm = new StartForm();
-            DialogResult result = startForm.ShowDialog();
+            LoadGame();
+        }
 
-            if (result == DialogResult.OK)
+        void LoadGame()
+        {
+            StartForm startForm;
+
+            if (strNamePlayer1 != "" && strNamePlayer2 != "")
+            {
+                startForm = new StartForm(nBoardWidth, nBoardHeight, bFillBorder, strNamePlayer1, strNamePlayer2, cPlayer1, cPlayer2);
+            }
+            else
+            {
+                startForm = new StartForm();
+            }
+
+            if (startForm.ShowDialog() == DialogResult.OK)
             {
                 nBoardWidth = startForm.boardWidth;
                 nBoardHeight = startForm.boardHeight;
                 bFillBorder = startForm.fillBorder;
+
+                strNamePlayer1 = startForm.namePlayer1;
+                strNamePlayer2 = startForm.namePlayer2;
+
+                cPlayer1 = startForm.colorPlayer1;
+                cPlayer2 = startForm.colorPlayer2;
+
+                nPlayerTurn = (startForm.firstPlayer == 1 ? 2 : 1);
+                ChangeTurn();
             }
             else
             {
@@ -93,12 +121,26 @@ namespace Fenced
                 }
             }
 
+            listEdge.Clear();
+
             nPlayer1Count = 0;
             nPlayer2Count = 0;
             DrawPlayerScore();
 
-            nPlayerTurn = 1;
-            labelPlayer1.Font = new Font(Label.DefaultFont, FontStyle.Bold);
+            labelPlayer1.ForeColor = cPlayer1;
+            labelPlayer1.BackColor = GetBrightness(cPlayer1) > 130 ? Color.Black : Color.White;
+            labelPlayer2.ForeColor = cPlayer2;
+            labelPlayer2.BackColor = GetBrightness(cPlayer2) > 130 ? Color.Black : Color.White;
+
+            List<Control> listControls = new List<Control>();
+            foreach (Control c in Controls)
+            {
+                if (c.Name.Contains("pictureBox"))
+                    listControls.Add(c);
+            }
+
+            foreach (Control c in listControls)
+                this.Controls.Remove(c);
 
             for (int row = 0; row < nBoardHeight; row++)
             {
@@ -107,7 +149,7 @@ namespace Fenced
                     PictureBox pb = new PictureBox()
                     {
                         Name = $"pictureBox_Dot_{row}_{col}",
-                        Image = Properties.Resources.Dot,
+                        Image = Properties.Resources.imgDot,
                         Location = new Point(15 + (48 * col), 52 + (48 * row)),
                         Size = new Size(10, 10)
                     };
@@ -122,7 +164,7 @@ namespace Fenced
                     PictureBox pb = new PictureBox()
                     {
                         Name = $"pictureBox_LineHR_{row}_{col}",
-                        Image = Properties.Resources.LineHR,
+                        Image = Properties.Resources.imgLineHR,
                         Location = new Point(26 + (48 * col), 55 + (48 * row)),
                         Size = new Size(36, 10)
                     };
@@ -130,7 +172,7 @@ namespace Fenced
 
                     if (bFillBorder && (row == 0 || row == nBoardHeight - 1))
                     {
-                        pb.Image = Properties.Resources.LineClickedHR;
+                        pb.Image = Properties.Resources.imgLineClickedHR;
                         pb.Enabled = false;
                         listEdge.Add(new Tuple<Point, Point>(new Point(col, row), new Point(col + 1, row)));
                     }
@@ -146,7 +188,7 @@ namespace Fenced
                     PictureBox pb = new PictureBox()
                     {
                         Name = $"pictureBox_LineVR_{row}_{col}",
-                        Image = Properties.Resources.LineVR,
+                        Image = Properties.Resources.imgLineVR,
                         Location = new Point(18 + (48 * col), 63 + (48 * row)),
                         Size = new Size(10, 36)
                     };
@@ -154,7 +196,7 @@ namespace Fenced
 
                     if (bFillBorder && (col == 0 || col == nBoardWidth - 1))
                     {
-                        pb.Image = Properties.Resources.LineClickedVR;
+                        pb.Image = Properties.Resources.imgLineClickedVR;
                         pb.Enabled = false;
                         listEdge.Add(new Tuple<Point, Point>(new Point(col, row), new Point(col, row + 1)));
                     }
@@ -164,13 +206,20 @@ namespace Fenced
             }
         }
 
+        int GetBrightness(Color c)
+        {
+            return (int)Math.Sqrt(c.R * c.R * 0.241 + c.G * c.G * 0.691 + c.B * c.B * 0.068);
+        }
+
         private void labelPlayer1_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog();
 
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                labelPlayer1.ForeColor = colorDialog.Color;
+                cPlayer1 = colorDialog.Color;
+                labelPlayer1.ForeColor = cPlayer1;
+                labelPlayer1.BackColor = GetBrightness(cPlayer1) > 130 ? Color.Black : Color.White;
                 SetAreaColor();
             }
         }
@@ -181,7 +230,9 @@ namespace Fenced
 
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                labelPlayer2.ForeColor = colorDialog.Color;
+                cPlayer2 = colorDialog.Color;
+                labelPlayer2.ForeColor = cPlayer2;
+                labelPlayer2.BackColor = GetBrightness(cPlayer2) > 130 ? Color.Black : Color.White;
                 SetAreaColor();
             }
         }
@@ -204,13 +255,13 @@ namespace Fenced
 
             if (pictureBox.Name.Contains("HR"))
             {
-                pictureBox.Image = Properties.Resources.LineClickedHR;
+                pictureBox.Image = Properties.Resources.imgLineClickedHR;
 
                 listEdge.Add(new Tuple<Point, Point>(new Point(col, row), new Point(col + 1, row)));
             }
             else if (pictureBox.Name.Contains("VR"))
             {
-                pictureBox.Image = Properties.Resources.LineClickedVR;
+                pictureBox.Image = Properties.Resources.imgLineClickedVR;
 
                 listEdge.Add(new Tuple<Point, Point>(new Point(col, row), new Point(col, row + 1)));
             }
@@ -273,14 +324,14 @@ namespace Fenced
                     {
                         nPlayer1Count++;
 
-                        mapArea[row, col].pb.BackColor = labelPlayer1.ForeColor;
+                        mapArea[row, col].pb.BackColor = cPlayer1;
                         mapArea[row, col].pb.BringToFront();
                     }
                     else if (mapArea[row, col].nOccupant == 2)
                     {
                         nPlayer2Count++;
 
-                        mapArea[row, col].pb.BackColor = labelPlayer2.ForeColor;
+                        mapArea[row, col].pb.BackColor = cPlayer2;
                         mapArea[row, col].pb.BringToFront();
                     }
                 }
@@ -294,33 +345,33 @@ namespace Fenced
 
         void DrawPlayerScore()
         {
-            labelPlayer1.Text = $"Player 1 ({nPlayer1Count})";
-            labelPlayer2.Text = $"Player 2 ({nPlayer2Count})";
+            labelPlayer1.Text = $"● {strNamePlayer1} ({nPlayer1Count})";
+            labelPlayer2.Text = $"● {strNamePlayer2} ({nPlayer2Count})";
         }
 
         void GameOver()
         {
             DialogResult result;
 
-            SoundPlayer sp = new SoundPlayer(Properties.Resources.GameOver);
+            SoundPlayer sp = new SoundPlayer(Properties.Resources.sfxGameOver);
             sp.Play();
 
             if (nPlayer1Count > nPlayer2Count)
             {
-                result = MessageBox.Show("Player 1이 승리하였습니다!", "게임 오버", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                result = MessageBox.Show($"{strNamePlayer1}이(가) 승리하였습니다!\n다시 플레이하시겠습니까?", "게임 오버", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             }
             else if (nPlayer2Count > nPlayer1Count)
             {
-                result = MessageBox.Show("Player 2이 승리하였습니다!", "게임 오버", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                result = MessageBox.Show($"{strNamePlayer1}이(가) 승리하였습니다!\n다시 플레이하시겠습니까?", "게임 오버", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             }
             else
             {
-                result = MessageBox.Show("비겼습니다!", "게임 오버", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                result = MessageBox.Show("비겼습니다!\n다시 플레이하시겠습니까?", "게임 오버", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             }
 
             if (result == DialogResult.Yes)
             {
-                this.Close();
+                LoadGame();
             }
             else
             {
